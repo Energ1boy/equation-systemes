@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résolveur de Systèmes d'Équations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Résolveur de Systèmes d'Équations Linéaires</h1>
+        <p class="subtitle">Entrez votre système d'équations dans les champs ci-dessous.</p>
+
+        <!-- Formulaire pour les équations -->
+        <div class="equation-form">
+            <h2>Entrez vos équations</h2>
+            <input type="text" id="equation1" placeholder="Exemple : -x + 2y = 1">
+            <input type="text" id="equation2" placeholder="Exemple : -3x + 6y = 2">
+            <button onclick="solveSystem()">Résoudre</button>
+        </div>
+
+        <div class="output">
+            <p id="system-output"></p>
+        </div>
+
+        <!-- Section pour le processus -->
+        <div class="process-section">
+            <button id="toggle-process" onclick="toggleProcess()">Voir le processus</button>
+            <div id="process-details" class="hidden">
+                <p id="process-output"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Créé par Timur Hromek | Hébergé par HIND</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

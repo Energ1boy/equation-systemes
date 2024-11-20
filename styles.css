@@ -1,0 +1,177 @@
+/* General styling */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f4f4f9, #e6e6f5);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #4a4a4a;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #777;
+}
+
+.equation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"] {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 24px);  /* Adjusted to make input smaller and fit inside the panel */
+    max-width: 100%; /* Ensure the input doesn't stretch out too far */
+    margin: 0 auto;
+    transition: box-shadow 0.3s ease;
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 0 5px #007bff;
+    border-color: #007bff;
+    outline: none;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.output {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    animation: slideIn 0.5s ease;
+}
+
+/* Process section styling */
+.process-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#toggle-process {
+    background-color: #28a745;
+    color: #fff;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+#toggle-process:hover {
+    background-color: #218838;
+}
+
+#process-details {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.6;
+    animation: slideDown 0.5s ease;
+}
+
+/* Hidden/visible styles for collapsible section */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 15px;
+    background-color: #4a4a4a;
+    color: white;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+        transform-origin: top;
+    }
+}

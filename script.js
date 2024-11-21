@@ -53,10 +53,26 @@ function solveSystem() {
         processDetails += `<b>Étape 2 :</b> Calcul des solutions.<br>`;
         processDetails += `x = (c1 * b2 - c2 * b1) / det = (${c1} * ${b2} - ${c2} * ${b1}) / ${det} = ${x.toFixed(2)}<br>`;
         processDetails += `y = (a1 * c2 - a2 * c1) / det = (${a1} * ${c2} - ${a2} * ${c1}) / ${det} = ${y.toFixed(2)}<br>`;
-        processDetails += `<b>Solution :</b> x = ${x.toFixed(2)}, y = ${y.toFixed(2)}<br>`;
 
-        document.getElementById("system-output").innerHTML =
-            `<b>Solution :</b> x = ${x.toFixed(2)}, y = ${y.toFixed(2)}`;
+        // Validate solutions using back-substitution
+        const eq1Check = a1 * x + b1 * y;
+        const eq2Check = a2 * x + b2 * y;
+        const tolerance = 1e-6; // Tolerance for floating-point errors
+
+        processDetails += `<b>Étape 3 :</b> Validation des solutions (substitution inverse).<br>`;
+        processDetails += `Pour l'équation 1: ${a1}x + ${b1}y = ${eq1Check.toFixed(2)} (attendu: ${c1})<br>`;
+        processDetails += `Pour l'équation 2: ${a2}x + ${b2}y = ${eq2Check.toFixed(2)} (attendu: ${c2})<br>`;
+
+        if (Math.abs(eq1Check - c1) > tolerance || Math.abs(eq2Check - c2) > tolerance) {
+            document.getElementById("system-output").innerText =
+                "Erreur : Les solutions calculées ne satisfont pas les équations d'origine.";
+            processDetails += `<b>Échec :</b> Les solutions calculées ne sont pas correctes.<br>`;
+        } else {
+            processDetails += `<b>Validation réussie :</b> Les solutions sont correctes.<br>`;
+            document.getElementById("system-output").innerHTML =
+                `<b>Solution :</b> x = ${x.toFixed(2)}, y = ${y.toFixed(2)}`;
+        }
+
         document.getElementById("process-output").innerHTML = processDetails;
     } catch (error) {
         document.getElementById("system-output").innerText =

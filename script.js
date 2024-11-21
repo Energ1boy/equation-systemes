@@ -1,5 +1,7 @@
 function parseEquation(equation) {
-    const cleanedEquation = equation.toLowerCase().replace(/\s+/g, ""); // Normalize and remove spaces
+    // Clean up spaces and convert to lowercase
+    const cleanedEquation = equation.toLowerCase().replace(/\s+/g, "");
+    // Regular expression to parse coefficients and constants
     const regex = /([+-]?\d*\.?\d*)x|([+-]?\d*\.?\d*)y|=([+-]?\d*\.?\d*)/g;
     const matches = Array.from(cleanedEquation.matchAll(regex));
 
@@ -7,10 +9,13 @@ function parseEquation(equation) {
 
     matches.forEach(match => {
         if (match[1] !== undefined) {
-            x = Number(match[1] === "" || match[1] === "+" ? 1 : match[1] === "-" ? -1 : match[1]);
+            // Coefficient of x
+            x += Number(match[1] === "" || match[1] === "+" ? 1 : match[1] === "-" ? -1 : match[1]);
         } else if (match[2] !== undefined) {
-            y = Number(match[2] === "" || match[2] === "+" ? 1 : match[2] === "-" ? -1 : match[2]);
+            // Coefficient of y
+            y += Number(match[2] === "" || match[2] === "+" ? 1 : match[2] === "-" ? -1 : match[2]);
         } else if (match[3] !== undefined) {
+            // Constant term
             c = Number(match[3]);
         }
     });
@@ -26,13 +31,14 @@ function solveSystem() {
         const [a1, b1, c1] = parseEquation(eq1);
         const [a2, b2, c2] = parseEquation(eq2);
 
+        // Calculate determinant
         const det = a1 * b2 - a2 * b1;
 
-        // Process details
         let processDetails = `<b>Étape 1 :</b> Calcul du déterminant.<br>`;
         processDetails += `Determinant = (${a1}) * (${b2}) - (${a2}) * (${b1}) = ${det}<br>`;
 
         if (det === 0) {
+            // Determinant is 0, no unique solution
             processDetails += `<b>Étape 2 :</b> Le déterminant est nul, donc le système n'a pas de solution unique.<br>`;
             document.getElementById("system-output").innerText =
                 "Le système n'a pas de solution unique (incompatible ou indéterminé).";
@@ -40,7 +46,7 @@ function solveSystem() {
             return;
         }
 
-        // Calculating solutions
+        // Calculate solutions
         const x = (c1 * b2 - c2 * b1) / det;
         const y = (a1 * c2 - a2 * c1) / det;
 
